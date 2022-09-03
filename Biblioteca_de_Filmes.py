@@ -1,17 +1,31 @@
+from typing import List
+
 print('Catálogo de Filmes')
 print("-" * 19)
 
 import pandas as pd
 
-filmes = []
-data = []
-qtd =[]
+movies = []
 
-filmes.append(input('Filme: '))
-data.append(input('Última Vez que Assistiu: '))
-qtd.append(input('Quantas Vezes Assistiu: '))
+movies.append(input('Filme: '))
+movies.append(input('Diretor: '))
+movies.append(input('Gênero: '))
+movies.append(input('Quantidade de vezes assistida: '))
 
-dados = {"Filme":filmes, "Data":data, "Qtd":qtd}
-catalogo = pd.DataFrame(dados)
+decision = input("Deseja adicionar mais filmes? S/N ")
 
-print(catalogo)
+while decision:
+    if decision == 'S':
+        movies.append(input('Filme: '))
+        movies.append(input('Diretor: '))
+        movies.append(input('Gênero: '))
+        movies.append(input('Quantidade de vezes assistida: '))
+        decision = input("Deseja adicionar mais filmes? S/N ")
+    else:
+        break
+
+columns = ['FILME', 'DIRETOR', 'GÊNERO', 'ASSISTIDO']
+catalog = pd.DataFrame(movies, columns)
+catalogT = catalog.transpose()
+
+print(catalogT)
