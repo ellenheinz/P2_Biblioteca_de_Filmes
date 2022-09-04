@@ -1,5 +1,3 @@
-from typing import List
-
 print('Catálogo de Filmes')
 print("-" * 19)
 
@@ -7,25 +5,24 @@ import pandas as pd
 
 movies = []
 
-movies.append(input('Filme: '))
-movies.append(input('Diretor: '))
-movies.append(input('Gênero: '))
-movies.append(input('Quantidade de vezes assistida: '))
+def options():
+    movie = input('Filme: ')
+    director = input('Diretor: ')
+    genre = input('Gênero: ')
+    time = int(input('Quantidade de vezes assistido: '))
+    movies.append({'FILME': movie, 'DIRETOR': director, 'GÊNERO': genre, 'X ASSISTIDO': time})
 
+
+options()
 decision = input("Deseja adicionar mais filmes? S/N ")
 
 while decision:
     if decision == 'S':
-        movies.append(input('Filme: '))
-        movies.append(input('Diretor: '))
-        movies.append(input('Gênero: '))
-        movies.append(input('Quantidade de vezes assistida: '))
+        options()
         decision = input("Deseja adicionar mais filmes? S/N ")
     else:
         break
 
-columns = ['FILME', 'DIRETOR', 'GÊNERO', 'ASSISTIDO']
-catalog = pd.DataFrame(movies, columns)
-catalogT = catalog.transpose()
+catalog = pd.DataFrame(movies)
 
-print(catalogT)
+print(catalog)
